@@ -1,0 +1,28 @@
+.addForm{
+    width: 40%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 15px 1px blue;
+    padding: 30px;
+}
+img{
+    width: 200px;
+    height: 200px;
+}
+.addForm input{
+    padding: 5px 15px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+}
+.qwe{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
+    /* background-color: aqua; */
+}
+
