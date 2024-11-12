@@ -18,9 +18,10 @@ const App = () => {
     for (let i = 0; i < files.length; i++) {
       formdata.append("Images", files[i]);
     }
-    for(let i=0;i<100;i++){
       postUser(formdata);
-    }
+      e.target["name"].value = "";
+      e.target["description"].value = "";
+      e.target["files"].files = null;
   };
 
   const handleEdit = () => {
@@ -35,7 +36,6 @@ const App = () => {
 
   return (
     <>
-      {/* Edit Modal */}
       {modalEdit && (
         <dialog open className="modalEdit fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
@@ -65,7 +65,6 @@ const App = () => {
         </dialog>
       )}
 
-      {/* Add Form */}
       <form onSubmit={handleAdd} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto mb-8">
         <h2 className="text-xl font-semibold mb-4">Add New Item</h2>
         <input
@@ -94,11 +93,10 @@ const App = () => {
         </button>
       </form>
 
-      {/* Display Data */}
       <div className="space-y-6">
         {data?.map((el) => {
           return (
-            <div key={el.id} className="bg-white p-6 rounded-lg shadow-md">
+            <div key={el.id} className="bg-[#f3f3f3] p-6 rounded-lg shadow-md w-[40%] m-auto ">
               <h3 className="text-lg font-semibold">{el.name}</h3>
               <p className="text-gray-700">{el.description}</p>
               {el?.images?.map((elem) => (

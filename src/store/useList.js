@@ -6,7 +6,7 @@ export const useList = create((set, get) => ({
     data: [],
     getUser: async () => {
         try {
-            let {data} = await axios.get(`${url}/ToDo/get-to-dos`);
+            let {data} = await axios.get(`${url}/api/to-dos`);
             set({data: data.data});
         } catch (error) {
             console.error(error);
@@ -14,7 +14,7 @@ export const useList = create((set, get) => ({
     },
     postUser: async (obj) => {
         try {
-            await axios.post(`${url}/ToDo/add-to-do`, obj);
+            await axios.post(`${url}/api/to-dos`, obj);
             get().getUser()
         } catch (error) {
             console.error(error);
@@ -22,7 +22,7 @@ export const useList = create((set, get) => ({
     },
     deleteUser: async (id) => {
         try {
-            await axios.delete(`${url}/ToDo/delete-to-do?id=${id}`);
+            await axios.delete(`${url}/api/to-dos/?id=${id}`);
             get().getUser()
         } catch (error) {
             console.error(error);
@@ -30,7 +30,7 @@ export const useList = create((set, get) => ({
     },
     deleteImage: async (id) => {
         try {
-            await axios.delete(`${url}/ToDo/delete-to-do-image?imageId=${id}`);
+            await axios.delete(`${url}/api/to-dos/images/${id}`);
             get().getUser()
         } catch (error) {
             console.error(error);
@@ -46,7 +46,7 @@ export const useList = create((set, get) => ({
     setDesc: (value) => set(state => ({desc:value})), 
     putUser: async (obj) => {
       try {
-        await axios.put(`${url}/ToDo/update-to-do`, obj);
+        await axios.put(`${url}/api/to-dos`, obj);
         get().getUser();
       } catch (error) {
         console.error(error);
