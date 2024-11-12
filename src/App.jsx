@@ -3,7 +3,7 @@ import { useList } from './store/useList';
 import { url } from './config/config';
 
 const App = () => {
-  let { data, getUser, postUser, deleteUser, deleteImage, modalEdit, setModalEdit, idx, setIdx, putUser, setName, name, desc, setDesc } = useList();
+  let { data, getUser, postUser, check, deleteUser, deleteImage, modalEdit, setModalEdit, idx, setIdx, putUser, setName, name, desc, setDesc } = useList();
 
   useEffect(() => {
     getUser();
@@ -99,6 +99,7 @@ const App = () => {
             <div key={el.id} className="bg-[#f3f3f3] p-6 rounded-lg shadow-md max-w-md mx-auto mt-[10px] ">
               <h3 className="text-lg font-semibold">{el.name}</h3>
               <p className="text-gray-700">{el.description}</p>
+              <p style={{color:el.isCompleted? "green" : "red" }}>{el.isCompleted? "In Stock" : "Out of Stock"}</p>
               {el?.images?.map((elem) => (
                 <div key={elem.id} className="mt-4">
                   <img
@@ -127,6 +128,7 @@ const App = () => {
                 >
                   Edit
                 </button>
+                <input type="checkbox" onClick={() => {check(el)}} />
               </div>
             </div>
           );
