@@ -96,7 +96,7 @@ const App = () => {
       <div className="p-[15px]">
         {data?.map((el) => {
           return (
-            <div key={el.id} className="bg-[#f3f3f3] p-6 rounded-lg shadow-md max-w-md mx-auto ">
+            <div key={el.id} className="bg-[#f3f3f3] p-6 rounded-lg shadow-md max-w-md mx-auto mt-[10px] ">
               <h3 className="text-lg font-semibold">{el.name}</h3>
               <p className="text-gray-700">{el.description}</p>
               {el?.images?.map((elem) => (
