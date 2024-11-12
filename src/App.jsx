@@ -111,7 +111,7 @@ const App = () => {
               <p className="text-gray-700">{el.description}</p>
               <p style={{color:el.isCompleted? "green" : "red" }}>{el.isCompleted? "In Stock" : "Out of Stock"}</p>
               <form onSubmit={(e) => {idx = el.id, handleImageAdd(e), console.log(idx);}}>
-                <input type="file" className="mt-[10px] bg-white" name="filesAdd" />
+                <input type="file" multiple className="mt-[10px] bg-white" name="filesAdd" />
                 <button className="p-[5px] bg-green-500 text-white rounded-md hover:bg-green-600" type='submit'>Add image</button>
               </form>
               <div className="flex justify-between flex-wrap">
