@@ -3,7 +3,7 @@ import { useList } from './store/useList';
 import { url } from './config/config';
 
 const App = () => {
-  let { data, getUser, postUser, check, deleteUser, deleteImage, modalEdit, setModalEdit, idx, setIdx, putUser, setName, name, desc, setDesc } = useList();
+  let { data, getUser, postUser, postImage, check, deleteUser, deleteImage, modalEdit, setModalEdit, idx, setIdx, putUser, setName, name, desc, setDesc } = useList();
 
   useEffect(() => {
     getUser();
@@ -33,6 +33,16 @@ const App = () => {
     putUser(obj);
     setModalEdit(false);
   };
+
+  const handleImageAdd = (e) => {
+    e.preventDefault();
+    const formdata = new FormData();
+    const files = e.target['filesAdd'].files;
+    for (let i = 0; i < files.length; i++) {
+      formdata.append("Images", files[i]);
+    }
+    postImage(formdata, idx);
+  }
 
   return (
     <>
@@ -100,21 +110,27 @@ const App = () => {
               <h3 className="text-lg font-semibold">{el.name}</h3>
               <p className="text-gray-700">{el.description}</p>
               <p style={{color:el.isCompleted? "green" : "red" }}>{el.isCompleted? "In Stock" : "Out of Stock"}</p>
-              {el?.images?.map((elem) => (
-                <div key={elem.id} className="mt-4">
-                  <img
-                    src={url + `/images/${elem.imageName}`}
-                    alt={elem.imageName}
-                    className="w-32 h-32 object-cover rounded-md"
-                  />
-                  <button
-                    onClick={() => { deleteImage(elem.id) }}
-                    className="mt-2 text-sm text-red-500 hover:text-red-700"
-                  >
-                    Delete Image
-                  </button>
-                </div>
-              ))}
+              <form onSubmit={(e) => {idx = el.id, handleImageAdd(e), console.log(idx);}}>
+                <input type="file" className="mt-[10px] bg-white" name="filesAdd" />
+                <button className="p-[5px] bg-green-500 text-white rounded-md hover:bg-green-600" type='submit'>Add image</button>
+              </form>
+              <div className="flex justify-between flex-wrap">
+                {el?.images?.map((elem) => (
+                  <div key={elem.id} className="mt-4">
+                      <img
+                        src={url + `/images/${elem.imageName}`}
+                        alt={elem.imageName}
+                        className="w-32 h-32 object-cover rounded-md"
+                        />
+                      <button
+                        onClick={() => { deleteImage(elem.id) }}
+                        className="mt-2 text-sm text-red-500 hover:text-red-700"
+                        >
+                        Delete Image
+                      </button>
+                  </div>
+                ))}
+              </div>
               <div className="mt-4 flex space-x-4">
                 <button
                   onClick={() => { deleteUser(el.id) }}

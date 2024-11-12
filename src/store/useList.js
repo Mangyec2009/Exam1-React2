@@ -64,6 +64,14 @@ export const useList = create((set, get) => ({
         } catch (error) {
           console.error(error);
         }
+    },
+    postImage: async (obj, id) => {
+        try {
+            await axios.post(`${url}/api/to-dos/${id}/images`, obj);
+            get().getUser();
+        } catch (error) {
+            console.error(error);   
+        }
     }
     
 }))
