@@ -122,7 +122,7 @@ const App = () => {
                         alt={elem.imageName}
                         className="w-32 h-32 object-cover rounded-md"
                         />
-                      <video src={elem.imageName} controls muted autoPlay></video>
+                      {/* <video src={elem.imageName} controls></video> */}
                       <button
                         onClick={() => { deleteImage(elem.id) }}
                         className="mt-2 text-sm text-red-500 hover:text-red-700"
